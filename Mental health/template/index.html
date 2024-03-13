@@ -1,62 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title>Mental Health Predictor</title>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  </head>
+    <link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
 
-  <body>
+<body>
     <div class="section no-pad-bot" id="index-banner">
-      <div class="container">
-        <br><br>
-        <h1 class="header center orange-text">Mental Health Prediction</h1>
-          <div class="row center">
-            <h5 class="header col s12 light">Predict the probability whether a person requires Mental Treatment
-              <br>
-            </h5>
-          </div>
-        <div class="row center">
-          <h6 class="header col s12 light">Instructions to fill form<br>1. Enter age in years<br>2. For Gender: Enter 0 for male, 1 for female and 2 for transgender<br>3. For Family History: Enter 0 for No and 1 for Yes</h6>
-        </div>
-
-        <div class="row">
-          <form action='/predict' method="post" class="col s12">
-            <div class="row">
-              <div class="input-field col s4">
-                <label for="first_name"><b>Age</b></label>
-                <br>
-                <input placeholder="Age" name="Age" id="first_name" type="text" class="validate">
-              </div>
-              <div class="input-field col s4">
-                <label for="last_name"><b>Gender </b></label>
-                <br>
-                <input id="last_name" name="Gender" placeholder="Gender"  type="text" class="validate">
-              </div>
-              <div class="input-field col s4">
-                <label for="_name"><b>Family History</b></label>
-                <br>
-                <input id="_name" name="Family_history" placeholder="Family History" type="text" class="validate">
-              </div>
-            </div>
+        <div class="container">
+            <br><br>
+            <h1 class="header center orange-text">Mental Health Prediction</h1>
             <div class="row center">
-              <button type="submit" class="btn-large waves-effect waves-light orange">Predict Probability</button>
+                <h5 class="header col s12 light">Predict the probability whether a person requires Mental Treatment
+                    <br>
+                </h5>
             </div>
-          </form>
+            <!-- <div class="row center">
+                <h6 class="header col s12 light">Instructions to fill form<br>1. Enter age in years<br>2. For Gender:
+                    Enter 0 for male, 1 for female and 2 for transgender<br>3. For Family History: Enter 0 for No and 1
+                    for Yes</h6>
+            </div> -->
+
+            <div class="row">
+                <form action='/predict' method="post" class="col s12">
+                    <div class="row">
+                        <!-- Age -->
+                        <div class="input-field col s4">
+                            <label for="first_name"><b>Age</b></label>
+                            <br>
+                            <input placeholder="Age" name="Age" id="first_name" type="text" class="validate">
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="input-field col s4">
+                            <label for="last_name"><b>Gender </b></label>
+                            <br>
+                            <input id="last_name" name="Gender" placeholder="Gender" type="text" class="validate">
+                        </div>
+
+                        <!-- Family History -->
+                        <div class="input-field col s4">
+                            <label for="_name"><b>Family History</b></label>
+                            <br>
+                            <input id="_name" name="Family_history" placeholder="Family History" type="text"
+                                class="validate">
+                        </div>
+                    </div>
+
+                    <!-- Additional Questions -->
+                    <div class="row">
+                        <!-- Are you employed? -->
+                        <div class="input-field col s12">
+                            <label for="employed"><b>Are you employed?</b></label>
+                            <br>
+                            <select id="employed" name="Employed" class="validate">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Do you have a family history of mental illness? -->
+                        <div class="input-field col s12">
+                            <label for="mental_illness"><b>Do you have a family history of mental illness?</b></label>
+                            <br>
+                            <select id="mental_illness" name="Mental_illness" class="validate">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="input-field col s12">
+                        <label for="mental_health_condition"><b>If you have a mental health condition, does it interfere
+                                with your work?</b></label>
+                        <br>
+                        <select id="mental_health_condition" name="Mental_health_condition" class="validate">
+                            <option value="Rarely">Rarely</option>
+                            <option value="Never">Never</option>
+                            <option value="Sometimes">Sometimes</option>
+                            <option value="Often">Often</option>
+                            <option value="NA">NA</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-field col s12">
+                        <label for="company_employees"><b>How many employees does your company or organizer
+                                have?</b></label>
+                        <br>
+                        <select id="company_employees" name="Company_employees" class="validate">
+                            <option value="1-25">1-25</option>
+                            <option value="26-100">26-100</option>
+                            <option value="101-500">101-500</option>
+                            <option value="501-1000">501-1000</option>
+                            <option value="more_than_1000">More than 1000</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-field col s12">
+                        <label for="remote_work"><b>Do you work remotely at least 50% of the time?</b></label>
+                        <br>
+                        <select id="remote_work" name="Remote_work" class="validate">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="tech_company"><b>Is your employer primarily a tech company organizer?</b></label>
+                        <br>
+                        <select id="tech_company" name="Tech_company" class="validate">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="mental_health_benefits"><b>Does your employer provide mental health
+                                benefits?</b></label>
+                        <br>
+                        <select id="mental_health_benefits" name="Mental_health_benefits" class="validate">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            <option value="Don't know">Don't know</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-field col s12">
+                        <label for="anonymity_protected"><b>Is your anonymity protected if you choose to take advantage
+                                of mental health or substance abuse treatment resources?</b></label>
+                        <br>
+                        <select id="anonymity_protected" name="Anonymity_protected" class="validate">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            <option value="Don't Know">Don't Know</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="ease_of_taking_mental_conditions"><b>How easy is it for you to take mental health
+                                conditions?</b></label>
+                        <br>
+                        <select id="ease_of_taking_mental_conditions" name="Ease_of_taking_mental_conditions"
+                            class="validate">
+                            <option value="Somewhat Easy">Somewhat Easy</option>
+                            <option value="Very Easy">Very Easy</option>
+                            <option value="Somewhat Difficult">Somewhat Difficult</option>
+                            <option value="Very Difficult">Very Difficult</option>
+                            <option value="Don't Know">Don't Know</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="negative_consequences_discussing_mental_health"><b>Do you think that discussing a
+                                mental health issue with your employer would have negative consequences?</b></label>
+                        <br>
+                        <select id="negative_consequences_discussing_mental_health"
+                            name="Negative_consequences_discussing_mental_health" class="validate">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            <option value="Maybe">Maybe</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="negative_consequences_discussing_physical_health"><b>Do you think that discussing a
+                                physical health issue with your employer would have negative consequences?</b></label>
+                        <br>
+                        <select id="negative_consequences_discussing_physical_health"
+                            name="Negative_consequences_discussing_physical_health" class="validate">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                            <option value="Maybe">Maybe</option>
+                        </select>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="discuss_mental_health_supervisor"><b>Would you be willing to discuss a mental health
+                                issue with your direct supervisor?</b></label>
+                        <br>
+                        <input id="discuss_mental_health_supervisor" name="Discuss_mental_health_supervisor"
+                            placeholder="Yes or No" type="text" class="validate">
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="bring_up_mental_health_interview"><b>Would you bring up a mental health issue with a
+                                potential employer in an interview?</b></label>
+                        <br>
+                        <input id="bring_up_mental_health_interview" name="Bring_up_mental_health_interview"
+                            placeholder="Yes or No" type="text" class="validate">
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="bring_up_physical_health_interview"><b>Would you bring up a physical health issue
+                                with a potential employer in an interview?</b></label>
+                        <br>
+                        <input id="bring_up_physical_health_interview" name="Bring_up_physical_health_interview"
+                            placeholder="Yes or No" type="text" class="validate">
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="employer_takes_mental_health_seriously"><b>Do you feel that your employer takes
+                                mental health as seriously as physical health?</b></label>
+                        <br>
+                        <input id="employer_takes_mental_health_seriously" name="Employer_takes_mental_health_seriously"
+                            placeholder="Yes or No" type="text" class="validate">
+                    </div>
+
+                    <div class="input-field col s12">
+                        <label for="negative_consequences_coworkers"><b>Have you heard of or observed negative
+                                consequences for coworkers with mental health conditions in your workplace?</b></label>
+                        <br>
+                        <input id="negative_consequences_coworkers" name="Negative_consequences_coworkers"
+                            placeholder="Yes or No" type="text" class="validate">
+                    </div>
+
+                    <!-- Add more questions as needed -->
+
+            </div>
+
+            <div class="row center">
+                <button type="submit" class="btn-large waves-effect waves-light orange">Predict
+                    Probability</button>
+            </div>
+            </form>
         </div>
         <br>
-        <div class="row center">
-          <h6 class="waves-effect waves-light orange">{{pred}}<br></h6>
-        </div>
-      </div>
+        <!-- <div class="row center">
+                <h6 class="waves-effect waves-light orange">{{pred}}<br></h6>
+            </div> -->
+    </div>
     </div>
     <br><br>
-  </div>
-</div>
+    </div>
+    </div>
 </body>
+
 </html>
